@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $metaTitle ?: 'RetroSpace Blog' }}</title>
-    <meta name="author" content="TheCodeholic">
+    <meta name="author" content="SamFisherLY">
     <meta name="description" content="{{ $metaDescription }}">
 
     <style>
@@ -40,7 +40,7 @@
         <div class="flex flex-col items-center py-12">
             <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl lg:text-6xl"
                 href="{{ route('home') }}">
-                RetroSpaceApp Blog
+                RetroSpace Blog
             </a>
             <p class="text-gray-600">
                 {!! \App\Models\TextWidget::getContent('header') !!}

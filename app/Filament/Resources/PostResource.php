@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Filament\Forms\Components\RichEditor;
 
 class PostResource extends Resource
 {
@@ -42,6 +43,9 @@ class PostResource extends Resource
                             ->required()
                             ->maxLength(2048),
                         Forms\Components\RichEditor::make('body')
+                            ->fileAttachmentsDisk('s3')
+                            ->fileAttachmentsDirectory('attachments')
+                            ->fileAttachmentsVisibility('private')
                             ->required(),
                         Forms\Components\TextInput::make('meta_title')
                             ->maxLength(255),
@@ -53,13 +57,13 @@ class PostResource extends Resource
                     ])->columnSpan(8),
 
                 Forms\Components\Card::make()
-                ->schema([
-                    Forms\Components\FileUpload::make('thumbnail')
-                        ->acceptedFileTypes(['image/*']),
-                    Forms\Components\Select::make('categories')
-                        ->multiple()
-                        ->relationship('categories', 'title'),
-                ])->columnSpan(4)
+                    ->schema([
+                        Forms\Components\FileUpload::make('thumbnail')
+                            ->acceptedFileTypes(['image/*']),
+                        Forms\Components\Select::make('categories')
+                            ->multiple()
+                            ->relationship('categories', 'title'),
+                    ])->columnSpan(4)
             ])->columns(12);
     }
 
